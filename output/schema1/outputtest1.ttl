@@ -1,0 +1,45 @@
+@prefix ns0: <http://custom-vocabulary.no#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://localhost/InfoModel> a <http://custom-vocabulary.no#InfoModel> .
+<http://localhost/complexType/EiendomListe> a <http://custom-vocabulary.no#ComplexType> .
+<http://localhost/complexType/EiendomType> a <http://custom-vocabulary.no#ComplexType> .
+<http://localhost/element/Eiendom>
+  ns0:type "EiendomType"^^xsd:anyURI ;
+  a ns0:Element .
+
+<http://localhost/element/adresse>
+  ns0:maxOccurs "1"^^xsd:int ;
+  ns0:minOccurs "0"^^xsd:int ;
+  ns0:type "xs:string"^^xsd:anyURI ;
+  a ns0:Element .
+
+<http://localhost/element/bolignummer>
+  ns0:maxOccurs "1"^^xsd:int ;
+  ns0:minOccurs "0"^^xsd:int ;
+  ns0:type "xs:string"^^xsd:anyURI ;
+  a ns0:Element .
+
+<http://localhost/element/bygningsnummer>
+  ns0:maxOccurs "1"^^xsd:int ;
+  ns0:minOccurs "0"^^xsd:int ;
+  ns0:type "xs:string"^^xsd:anyURI ;
+  a ns0:Element .
+
+<http://localhost/element/eiendom>
+  ns0:maxOccurs "unbounded"^^xsd:int ;
+  ns0:minOccurs "0"^^xsd:int ;
+  ns0:type "EiendomType"^^xsd:anyURI ;
+  a ns0:Element .
+
+<http://localhost/element/eiendomsidentifikasjon>
+  ns0:maxOccurs "1"^^xsd:int ;
+  ns0:minOccurs "0"^^xsd:int ;
+  ns0:type "xs:integer"^^xsd:anyURI ;
+  a ns0:Element .
+
+<http://localhost/element/kommunenavn>
+  ns0:maxOccurs "1"^^xsd:int ;
+  ns0:minOccurs "0"^^xsd:int ;
+  ns0:type "xs:string"^^xsd:anyURI ;
+  a ns0:Element .

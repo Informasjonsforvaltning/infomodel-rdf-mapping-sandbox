@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://test.norge.no/testskjemaxsd/v1.0"
+	targetNamespace="http://test.norge.no/testskjemaxsd/v1.0">
+	<xs:element name="Eiendom" type="EiendomType"/>
+	<xs:complexType name="EiendomListe">
+		<xs:sequence>
+			<xs:element name="eiendom" type="EiendomType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EiendomType">
+		<xs:all>
+			<xs:element name="eiendomsidentifikasjon" type="xs:integer" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="adresse" type="xs:string" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="bygningsnummer" type="xs:string" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="bolignummer" type="xs:string" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="kommunenavn" type="xs:string" nillable="true" minOccurs="0" maxOccurs="1"/>
+		</xs:all>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,96 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix ex: <http://ex.com/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xs: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix custom: <http://custom-vocabulary.no#> .
+@base <http://my-custom.mapping.no/> .
+
+<#SchemaMapping>
+  rml:logicalSource [ 
+    rml:source "./mapping/schema1/test.xsd" ;
+    rml:iterator "xs:schema" ;
+    rml:referenceFormulation ql:XPath
+  ];
+
+  rr:subjectMap [
+    rr:template "InfoModel" ;
+    rr:class custom:InfoModel
+  ];
+.
+
+<#ComplexTypeMapping>
+  rml:logicalSource [ 
+    rml:source "./mapping/schema1/test.xsd" ;
+    rml:iterator "//xs:complexType" ;
+    rml:referenceFormulation ql:XPath
+  ];
+
+  rr:subjectMap [
+    rr:template "complexType/{@name}" ;
+    rr:class custom:ComplexType
+  ];
+.
+
+# Mapping for sequence, not working yet.
+# <#SequenceMapping>
+#   rml:logicalSource [ 
+#     rml:source "./mapping/schema1/test.xsd" ;
+#     rml:iterator "//xs:sequence" ;
+#     rml:referenceFormulation ql:XPath
+#   ];
+
+#   rr:subjectMap [
+#     rr:termType rr:BlankNode ;
+#     rr:class custom:Sequence
+#   ];
+
+#   rr:predicateObjectMap [
+#     rr:predicate custom:contains;
+#     rr:objectMap [
+#       rr:reference "xs:element/{@name}" ;
+#       rr:datatype xsd:anyURI
+#     ];
+#   ]
+# .
+
+
+<#ElementMapping>
+  rml:logicalSource [ 
+    rml:source "./mapping/schema1/test.xsd" ;
+    rml:iterator "//xs:element" ;
+    rml:referenceFormulation ql:XPath
+  ];
+
+  rr:subjectMap [
+    rr:template "element/{@name}" ;
+    rr:class custom:Element
+  ];
+
+  rr:predicateObjectMap [
+    rr:predicate custom:type ;
+    rr:objectMap [
+      rml:reference "./@type";
+      rr:datatype xsd:anyURI
+    ]
+  ] ;
+  
+  rr:predicateObjectMap [
+    rr:predicate custom:minOccurs ;
+    rr:objectMap [
+      rml:reference "./@minOccurs";
+      rr:datatype xsd:int 
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate custom:maxOccurs ;
+    rr:objectMap [
+      rml:reference "./@maxOccurs";
+      rr:datatype xsd:int 
+    ]
+  ] ;
+.
